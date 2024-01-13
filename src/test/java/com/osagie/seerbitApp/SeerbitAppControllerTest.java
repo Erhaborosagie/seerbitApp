@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.http.RequestEntity.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -32,7 +31,7 @@ public class SeerbitAppControllerTest {
         Mockito.when(service.postTransaction(request)).thenReturn(ResponseEntity.ok().build());
 
         mockMvc.perform(
-                (MockMvcRequestBuilders.post("/transaction"))
+                (MockMvcRequestBuilders.post("/transactions"))
                         .content(new ObjectMapper().writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON)
         )
@@ -41,10 +40,10 @@ public class SeerbitAppControllerTest {
 
     @Test
     public void testGetTransaction() throws Exception {
-        Mockito.when(service.getTransaction()).thenReturn(ResponseEntity.ok().build());
+        Mockito.when(service.getTransactionStatistics()).thenReturn(ResponseEntity.ok().build());
 
         mockMvc.perform(
-                (MockMvcRequestBuilders.get("/transaction"))
+                (MockMvcRequestBuilders.get("/statistics"))
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk());
@@ -55,7 +54,7 @@ public class SeerbitAppControllerTest {
         Mockito.when(service.deleteTransaction()).thenReturn(ResponseEntity.ok().build());
 
         mockMvc.perform(
-                (MockMvcRequestBuilders.delete("/transaction"))
+                (MockMvcRequestBuilders.delete("/transactions"))
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk());

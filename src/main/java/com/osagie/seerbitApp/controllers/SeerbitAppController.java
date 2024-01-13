@@ -12,17 +12,17 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class SeerbitAppController {
     private final TransactionService service;
 
-    @PostMapping(value = "/transaction", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/transactions", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity postTransactions(@RequestBody TransactionRequest request){
         return service.postTransaction(request);
     }
 
-    @GetMapping(value = "/transaction", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/statistics", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity getTransactions(){
-        return service.getTransaction();
+        return service.getTransactionStatistics();
     }
 
-    @DeleteMapping(value = "/transaction", produces = APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/transactions", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity deleteTransactions(){
         return service.deleteTransaction();
     }
